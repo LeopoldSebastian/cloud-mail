@@ -10,7 +10,7 @@
     <div v-else :style="background"></div>
     <div class="form-wrapper">
       <div class="container">
-        <span class="form-title">S1N1STER MAIL</span>
+        <span class="form-title">S1N1STER Mail</span>
         <span class="form-desc" v-if="show === 'login'">{{ $t('loginTitle') }}</span>
         <span class="form-desc" v-else>{{ $t('regTitle') }}</span>
         <div v-show="show === 'login'">
@@ -606,78 +606,150 @@ function submitRegister() {
 }
 
 .container {
-  background: v-bind(loginOpacity);
-  padding-left: 40px;
-  padding-right: 40px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: rgba(255, 255, 255, 0.34);
+  backdrop-filter: blur(34px) saturate(180%);
+  -webkit-backdrop-filter: blur(34px) saturate(180%);
+  padding-left: 42px;
+  padding-right: 42px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 450px;
   height: 100%;
-  border-left: 1px solid var(--login-border);
-  box-shadow: var(--el-box-shadow-light);
+  border-left: 1px solid rgba(255, 255, 255, 0.42);
+  box-shadow:
+    -18px 0 50px rgba(31, 38, 135, 0.16),
+    inset 1px 0 0 rgba(255, 255, 255, 0.35);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.62), transparent 34%),
+      radial-gradient(circle at 85% 0%, rgba(255, 255, 255, 0.34), transparent 30%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.06));
+    pointer-events: none;
+  }
+
   @media (max-width: 1024px) {
-    padding: 20px 18px;
+    padding: 28px 24px;
     width: 384px;
     margin-left: 18px;
   }
+
   @media (max-width: 767px) {
-    border: 1px solid var(--login-border);
-    padding: 20px 18px;
-    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    padding: 28px 22px;
+    border-radius: 28px;
     height: fit-content;
     width: 100%;
     margin-right: 18px;
     margin-left: 18px;
+    box-shadow:
+      0 24px 70px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45);
   }
 
   .btn {
-    height: 36px;
+    height: 42px;
     width: 100%;
-    border-radius: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.34);
+    color: rgba(20, 20, 20, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.48);
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    font-weight: 600;
+    transition: all 0.22s ease;
+  }
+
+  .btn:hover {
+    background: rgba(255, 255, 255, 0.46);
+    border-color: rgba(255, 255, 255, 0.65);
+    transform: translateY(-1px);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+    box-shadow:
+      0 6px 18px rgba(0, 0, 0, 0.12),
+      inset 0 2px 8px rgba(255, 255, 255, 0.28);
   }
 
   .form-desc {
-    margin-top: 5px;
-    margin-bottom: 18px;
-    color: var(--form-desc-color);
+    margin-top: 6px;
+    margin-bottom: 20px;
+    color: rgba(35, 35, 35, 0.62);
   }
 
   .form-title {
-    font-weight: bold;
-    font-size: 22px !important;
+    font-weight: 700;
+    font-size: 26px !important;
+    letter-spacing: 0.2px;
+    color: rgba(18, 18, 18, 0.92);
   }
 
   .switch {
     margin-top: 20px;
     text-align: center;
+    color: rgba(35, 35, 35, 0.66);
 
     span {
-      color: var(--login-switch-color);
+      color: rgba(15, 15, 15, 0.88);
       cursor: pointer;
+      font-weight: 600;
     }
   }
 
   :deep(.el-input__wrapper) {
-    border-radius: 6px;
-    background: var(--el-bg-color);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.45),
+      0 8px 22px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+  }
+
+  :deep(.el-input__wrapper.is-focus) {
+    border-color: rgba(255, 255, 255, 0.68);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      0 0 0 3px rgba(255, 255, 255, 0.16),
+      0 10px 24px rgba(0, 0, 0, 0.08);
   }
 
   .email-input :deep(.el-input__wrapper) {
-    border-radius: 6px 0 0 6px;
-    background: var(--el-bg-color);
+    border-radius: 18px 0 0 18px;
+    background: rgba(255, 255, 255, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.42);
   }
 
   .el-input {
-    height: 38px;
+    height: 42px;
     width: 100%;
     margin-bottom: 18px;
 
     :deep(.el-input__inner) {
-      height: 36px;
+      height: 40px;
+      color: rgba(20, 20, 20, 0.88);
+    }
+
+    :deep(.el-input__inner::placeholder) {
+      color: rgba(30, 30, 30, 0.42);
     }
   }
 }
+
 
 :deep(.el-select-dropdown__item) {
   padding: 0 10px;
@@ -723,9 +795,16 @@ function submitRegister() {
 :deep(.el-input-group__append) {
   padding: 0 !important;
   padding-left: 8px !important;
-  padding-right: 4px !important;
-  background: var(--el-bg-color);
-  border-radius: 0 8px 8px 0;
+  padding-right: 6px !important;
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 0 18px 18px 0;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-left: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 8px 22px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
 }
 
 :deep(.el-button+.el-button) {
